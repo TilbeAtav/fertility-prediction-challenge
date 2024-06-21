@@ -26,17 +26,17 @@ def train_save_model(cleaned_df, outcome_df):
     ## This script contains a bare minimum working example
     random.seed(1) # not useful here because logistic regression deterministic
     
-    data_oversampled, target_oversampled = resample(cleaned_df[outcome_df == 1], 
+    data_oversampled, target_oversampled = resample(df[outcome_df == 1], 
                                            outcome_df[outcome_df == 1],
                                            replace=True,
-                                           n_samples= cleaned_df[outcome_df == 0].shape[0],
+                                           n_samples= df[outcome_df == 0].shape[0],
                                            random_state=123)
 
-    cleaned_df = pd.concat((cleaned_df[outcome_df == 0], data_oversampled))
-    outcome_df = pd.concat((cleaned_df[outcome_df == 0], target_oversampled))
+    df = pd.concat((df[outcome_df == 0], data_oversampled))
+    outcome_df = pd.concat((df[outcome_df == 0], target_oversampled))
 
     # Combine cleaned_df and outcome_df
-    model_df = pd.merge(cleaned_df, outcome_df, on="nomem_encr")
+    model_df = pd.merge(df, outcome_df, on="nomem_encr")
 
     # Filter cases for whom the outcome is not available
     model_df = model_df[~model_df['new_child'].isna()]  
