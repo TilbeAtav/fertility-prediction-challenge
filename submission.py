@@ -36,6 +36,7 @@ def clean_df(df, background_df=None):
 
     # Selecting variables for modelling
     keepcols = [
+	"nomem_encr",
         "cf20m003",
 	"cf20m128", 
 	"cf20m004",  
