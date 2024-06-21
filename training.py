@@ -17,9 +17,6 @@ def train_save_model(cleaned_df, outcome_df):
     outcome_df (pd.DataFrame): The data with the outcome variable (e.g., from PreFer_train_outcome.csv or PreFer_fake_outcome.csv).
     """
     
-    ## This script contains a bare minimum working example
-    random.seed(1) # not useful here because logistic regression deterministic
-    
     # Combine cleaned_df and outcome_df
     model_df = pd.merge(cleaned_df, outcome_df, on="nomem_encr")
 
@@ -30,7 +27,7 @@ def train_save_model(cleaned_df, outcome_df):
     model = LogisticRegression()
 
     # Fit the model
-    model.fit(model_df[['age']], model_df['new_child'])
+    model.fit(model_df[['cf20m003', 'cf20m004', 'cf20m128', 'ci20m379']], model_df['new_child'])
 
     # Save the model
     joblib.dump(model, "model.joblib")

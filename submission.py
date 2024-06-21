@@ -34,21 +34,19 @@ def clean_df(df, background_df=None):
     pd.DataFrame: The cleaned dataframe with only the necessary columns and processed variables.
     """
 
-    ## This script contains a bare minimum working example
-    # Create new variable with age
-    df["age"] = 2024 - df["birthyear_bg"]
-
-    # Imputing missing values in age with the mean
-    df["age"] = df["age"].fillna(df["age"].mean())
-
     # Selecting variables for modelling
     keepcols = [
-        "nomem_encr",  # ID variable required for predictions,
-        "age"          # newly created variable
+        "cf20m003",
+	"cf20m128", 
+	"cf20m004",  
+	"ci20m379"
     ] 
 
     # Keeping data with variables selected
     df = df[keepcols]
+    
+    f_missing = df.isna().any(axis=1)
+    df = df.drop(df[f_missing].index)
 
     return df
 
