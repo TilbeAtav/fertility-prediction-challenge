@@ -36,18 +36,17 @@ def clean_df(df, background_df=None):
 
     # Selecting variables for modelling
     keepcols = [
-	"nomem_encr",
+        "nomem_encr",
         "cf20m003",
-	"cf20m128", 
-	"cf20m004",  
-	"ci20m379"
+        "cf20m128", 
+        "cf20m004",  
+        "ci20m379"
     ] 
 
     # Keeping data with variables selected
     df = df[keepcols]
     
-    f_missing = df.isna().any(axis=1)
-    df = df.drop(df[f_missing].index)
+    df = df.dropna()
 
     return df
 
