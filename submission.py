@@ -20,6 +20,14 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 import joblib
 
+from sklearn.utils import resample
+
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import make_pipeline 
+from sklearn.linear_model import LogisticRegression
+from sklearn.impute import KNNImputer
+
 
 def clean_df(df, background_df=None):
     """
@@ -40,7 +48,19 @@ def clean_df(df, background_df=None):
         "cf20m003",
         "cf20m128", 
         "cf20m004",  
-        "ci20m379"
+        "ci20m379",
+        "cf20m013",
+        "cf20m014",
+        "cf20m015",
+        "cf20m016",
+        "cf20m020",
+        "cf20m022",
+        "cf20m024",
+        "cf20m025",
+        "cf20m027",
+        "burgstat_2020",
+        "woonvorm_2020",
+        "oplmet_2020"
     ] 
 
     # Keeping data with variables selected
