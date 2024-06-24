@@ -27,7 +27,7 @@ def train_save_model(cleaned_df, outcome_df):
     model = LogisticRegression()
 
     # Fit the model
-    model.fit(model_df[['cf20m003', 'cf20m004', 'cf20m128', 'ci20m379']], model_df['new_child'])
+    model.fit(model_df[["cf20m003", "cf20m128", "cf20m004", "ci20m379"]], model_df["new_child"])
 
     # Save the model
     joblib.dump(model, "model.joblib")
